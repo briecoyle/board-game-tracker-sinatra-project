@@ -1,4 +1,8 @@
-Games index page
+<h1>welcome <%= @user.username %></h1>
+<% @user.board_games.each do |game| %>
+<%= game.name %>
+<% end %>
+<a href="/games/new">Add Game</a>
 
 <form action="/logout" method="post">
   <input type="submit" value="Log Out">
