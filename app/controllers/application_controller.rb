@@ -11,9 +11,9 @@ class ApplicationController < Sinatra::Base
     erb :home
   end
 
-  get '/users/index' do
+  get '/games/index' do
     @user = current_user
-    erb :'/users/index'
+    erb :'/games/index'
   end
 
   get '/login' do
