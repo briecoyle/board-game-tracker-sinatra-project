@@ -11,8 +11,17 @@ class ApplicationController < Sinatra::Base
     erb :home
   end
 
+  get '/users/index' do
+    @user = current_user
+    erb :'/users/index'
+  end
+
   get '/users/login' do
-    erb :'/users/login'
+    if !logged_in?
+      erb :'/users/login'
+    else
+      erb :'games/index'
+    end
   end
 
   get '/users/signup' do
@@ -20,11 +29,17 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/users/login' do
-    "You've logged in!"
+    @user = User.find_by(username: params[:username])
+    if @user && @user.authenticate(params[:password])
+      session[:id] = @user.id
+      redirect to '/games/index'
+    else
+      redirect to '/users/login'
+    end
   end
 
   post '/users/signup' do
-    "You've signed up!"
+    redirect to '/games/index'
   end
 
   helpers do
