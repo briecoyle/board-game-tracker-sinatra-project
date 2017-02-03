@@ -15,7 +15,8 @@ ActiveRecord::Schema.define(version: 20170203191648) do
   create_table "board_games", force: :cascade do |t|
     t.string  "name"
     t.text    "description"
-    t.integer "num_of_players"
+    t.integer "min_players"
+    t.integer "max_players"
   end
 
   create_table "users", force: :cascade do |t|
