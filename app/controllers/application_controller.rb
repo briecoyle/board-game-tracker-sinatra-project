@@ -16,7 +16,7 @@ class ApplicationController < Sinatra::Base
     erb :'/users/index'
   end
 
-  get '/users/login' do
+  get '/login' do
     if !logged_in?
       erb :'/users/login'
     else
@@ -24,11 +24,15 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  get '/users/signup' do
-    erb :'/users/signup'
+  get '/signup' do
+    # if logged_in?
+    #   redirect to '/games/index'
+    # else
+      erb :'/users/signup'
+    # end
   end
 
-  post '/users/login' do
+  post '/login' do
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:id] = @user.id
@@ -38,7 +42,9 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  post '/users/signup' do
+  post '/signup' do
+    @user = User.create(params)
+    session.id = @user.id
     redirect to '/games/index'
   end
 
