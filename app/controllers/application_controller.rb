@@ -20,11 +20,11 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/users/login' do
-
+    "You've logged in!"
   end
 
   post '/users/signup' do
-
+    "You've signed up!"
   end
 
   helpers do
