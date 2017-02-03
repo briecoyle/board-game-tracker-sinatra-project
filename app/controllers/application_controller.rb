@@ -25,11 +25,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/signup' do
-    # if logged_in?
-    #   redirect to '/games/index'
-    # else
+    if logged_in?
+      redirect to '/games/index'
+    else
       erb :'/users/signup'
-    # end
+    end
   end
 
   post '/login' do
@@ -44,7 +44,7 @@ class ApplicationController < Sinatra::Base
 
   post '/signup' do
     @user = User.create(params)
-    session.id = @user.id
+    session[:id] = @user.id
     redirect to '/games/index'
   end
 
