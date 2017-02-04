@@ -3,5 +3,5 @@ class User < ActiveRecord::Base
   has_many :board_games, through: :users_board_games
 
   has_secure_password
-  validate :username
+  validates_uniqueness_of :username
 end
