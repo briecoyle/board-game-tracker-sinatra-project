@@ -13,6 +13,11 @@ class BoardGameController < ApplicationController
     end
   end
 
+  get '/games/:slug' do
+    @game = BoardGame.find_by_slug(params[:slug])
+    erb :'/games/show'
+  end
+
   post '/games/new' do
     @game = BoardGame.new
     @game.name = params[:name]

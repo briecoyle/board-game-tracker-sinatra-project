@@ -1,7 +1,10 @@
 <h1>welcome <%= @user.username %></h1>
-<% @user.board_games.each do |game| %>
-<%= game.name %>
-<% end %>
+<ul>
+  <% @user.board_games.each do |game| %>
+  <li><a href="/games/<%= game.slug%>"><%= game.name %></a></li>
+
+  <% end %>
+</ul>
 <a href="/games/new">Add Game</a>
 
 <form action="/logout" method="post">
