@@ -17,3 +17,8 @@
   <li><%= user.username %></li>
 <% end %>
 </ul>
+
+<h2>Add this game to your collection?</h2>
+<form action="/games/<%=@game.slug%>" method="post">
+  <input type="submit" name="name" value="Add Game">
+</form>

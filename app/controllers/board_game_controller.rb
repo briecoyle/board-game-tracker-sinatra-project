@@ -38,4 +38,13 @@ class BoardGameController < ApplicationController
     redirect to '/games/index'
   end
 
+  post '/games/:slug' do
+    @game = BoardGame.find_by_slug(params[:slug])
+    if logged_in?
+      @user = current_user
+      @user.board_games << @game
+    else
+      redirect to "games/#{@game.slug}"
+    end
+  end
 end
