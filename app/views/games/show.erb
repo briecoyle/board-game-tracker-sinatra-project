@@ -1,1 +1,19 @@
-Show game page
+<h1><%= @game.name %></h1>
+<h3>Number of players:</h3>
+<p>
+  <% if @game.max_players <= 10 %>
+    Between <%= @game.min_players %> and <%= @game.max_players %>
+  <% else %>
+    It's a party game! Play with as many people as you can!
+  <% end %>
+</p>
+<h3>Description:</h3>
+<p>
+  <%= @game.description %>
+</p>
+<h3>Who all has this game?</h3>
+<ul>
+<% @users.each do |user| %>
+  <li><%= user.username %></li>
+<% end %>
+</ul>

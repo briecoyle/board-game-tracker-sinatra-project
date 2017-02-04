@@ -15,6 +15,12 @@ class BoardGameController < ApplicationController
 
   get '/games/:slug' do
     @game = BoardGame.find_by_slug(params[:slug])
+    @users = []
+    User.all.each do |user|
+      if user.board_games.find(@game.id)
+        @users << user
+      end
+    end
     erb :'/games/show'
   end
 
