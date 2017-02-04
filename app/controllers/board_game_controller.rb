@@ -19,7 +19,7 @@ class BoardGameController < ApplicationController
 
   get '/games/:slug' do
     @game = BoardGame.find_by_slug(params[:slug])
-    @users = @game.users
+    @users = @game.users.uniq
     erb :'/games/show'
   end
 
