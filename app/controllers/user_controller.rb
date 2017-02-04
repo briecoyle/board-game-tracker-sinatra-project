@@ -5,10 +5,10 @@ class UserController < ApplicationController
   end
 
   get '/login' do
-    if !logged_in?
-      erb :'/users/login'
+    if logged_in?
+      erb :'/games/index'
     else
-      erb :'games/index'
+      erb :'/users/login'
     end
   end
 
@@ -35,7 +35,7 @@ class UserController < ApplicationController
       session[:id] = @user.id
       redirect to '/games/index'
     else
-      redirect to '/users/login'
+      redirect to '/login'
     end
   end
 

@@ -1,0 +1,9 @@
+Add an existing game here.
+
+<form action="/games/add" method="post">
+  <% BoardGame.all.each do |game| %>
+  <label for="game.name"><%= game.name %></label>
+    <input id="<%= game.name %>" type="checkbox" name="games[]" value="<%= game.id %>"><br>
+  <% end %>
+  <input type="submit" value="Add Games">
+</form>

@@ -13,14 +13,13 @@ class BoardGameController < ApplicationController
     end
   end
 
+  get '/games/add' do
+    erb :'/games/add'
+  end
+
   get '/games/:slug' do
     @game = BoardGame.find_by_slug(params[:slug])
-    @users = []
-    User.all.each do |user|
-      if user.board_games.find(@game.id)
-        @users << user
-      end
-    end
+    @users = @game.users
     erb :'/games/show'
   end
 
@@ -34,7 +33,13 @@ class BoardGameController < ApplicationController
       @max.max_players = 11
     end
     @game.save
-    @game.users << User.find[session[:id]]
+    @game.users << current_user
+    redirect to '/games/index'
+  end
+
+  post '/games/add' do
+    @user = current_user
+    @user.board_game_ids += params[:games]
     redirect to '/games/index'
   end
 
@@ -42,7 +47,12 @@ class BoardGameController < ApplicationController
     @game = BoardGame.find_by_slug(params[:slug])
     if logged_in?
       @user = current_user
-      @user.board_games << @game
+      if @user.board_games.include?(@game)
+        redirect to "/games/index"
+      else
+        @user.board_games << @game
+        redirect to '/games/index'
+      end
     else
       redirect to "games/#{@game.slug}"
     end

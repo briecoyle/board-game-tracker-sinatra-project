@@ -1,6 +1,6 @@
 <h1>welcome <%= @user.username %></h1>
 <ul>
-  <% @user.board_games.each do |game| %>
+  <% @user.board_games.uniq.each do |game| %>
   <li><a href="/games/<%= game.slug%>"><%= game.name %></a></li>
 
   <% end %>
