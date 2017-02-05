@@ -1,5 +1,5 @@
 @brie = User.create(username: "brie", password: "123")
-@test = User.create(username: "testu", password: "testp")
+@stephen = User.create(username: "stephen", password: "456")
 
 @ah = BoardGame.create(name: "Arkham Horror", min_players: 1, max_players: 8, description: "Arkham Horror is a cooperative game for 1-8 players ages 12 and up, and can be played in 2-3 hours.")
 
@@ -10,5 +10,5 @@
 @brie.board_games << @ah
 @brie.board_games << @monopoly
 
-@test.board_games << @ah
-@test.board_games << @tokaido
+@stephen.board_games << @ah
+@stephen.board_games << @tokaido

@@ -10,7 +10,7 @@ Run `shotgun` to interact with the application in your browser!
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/learn-co-curriculum/now-playing-cli-gem. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/briecoyle/board-game-tracker-sinatra-project. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 
 ## License
