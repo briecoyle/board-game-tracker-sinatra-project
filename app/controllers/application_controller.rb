@@ -1,5 +1,5 @@
 class ApplicationController < Sinatra::Base
-  
+
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     def logged_in?
-      !!session[:id]
+      !!current_user
     end
 
     def current_user

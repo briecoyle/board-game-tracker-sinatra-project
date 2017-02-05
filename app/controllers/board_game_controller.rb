@@ -2,9 +2,14 @@ require 'rack-flash'
 
 class BoardGameController < ApplicationController
   use Rack::Flash
+
   get '/games/index' do
-    @user = current_user
-    erb :'/games/index'
+    if logged_in?
+      @user = current_user
+      erb :'/games/index'
+    else
+      redirect to 'login'
+    end
   end
 
   get '/games/new' do
@@ -17,7 +22,11 @@ class BoardGameController < ApplicationController
   end
 
   get '/games/add' do
-    erb :'/games/add'
+    if logged_in?
+      erb :'/games/add'
+    else
+      redirect to '/login'
+    end
   end
 
   get '/games/:slug' do

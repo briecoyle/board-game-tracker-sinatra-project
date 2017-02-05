@@ -45,7 +45,12 @@ class UserController < ApplicationController
 
   post '/signup' do
     @user = User.create(params)
-    session[:id] = @user.id
-    redirect to '/games/index'
+    if @user.valid?
+      session[:id] = @user.id
+      redirect to '/games/index'
+    else
+      flash[:message] = "Please enter a valid username and password."
+      redirect to '/signup'
+    end
   end
 end
