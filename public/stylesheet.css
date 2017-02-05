@@ -1,0 +1,28 @@
+* {
+  font-family: tahoma;
+  background-color: #f4e1d2;
+  color: #bc5a45;
+}
+
+
+#login, #signup {
+  background-color: #b2b2b2;
+  color: white;
+  text-decoration: none;
+}
+
+input[type="submit"] {
+  font-size: 1.3em;
+  color: white;
+  border-color: #b2b2b2;
+  background-color: #b2b2b2;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  color: #bc5a45;
+  background-color: #f18973;
+}

@@ -6,7 +6,7 @@ Specs:
 - [x] Include more than one model class (list of model class names e.g. User, Post, Category) - There are two models, User and BoardGame. Each has multiple separate attributes and a relationship to the other model.
 - [x] Include at least one has_many relationship (x has_many y e.g. User has_many Posts) - This application demonstrates a many-to-many relationship, where each user may own many board games, and each board game may be associated with many users.
 - [x] Include user accounts - Users are able to sign up, log in, and log out. User profiles are protected from individuals that are not logged in. Users that are logged in can see other users that own the same game.
-- [ ] Ensure that users can't modify content created by other users
+- [x] Ensure that users can't modify content created by other users - Users can only add games to their own account if they are logged in.
 - [x] Include user input validations - Users can only create an account if they have a unique username and secure password.
 - [ ] Display validation failures to user with error message (example form URL e.g. /posts/new)
 - [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code. - The README does include all of these components. The short description includes the purpose of the application. The install instructions include information about how to run the application in a browser. A contributors guide and license are taken from bundle's standard literature.
