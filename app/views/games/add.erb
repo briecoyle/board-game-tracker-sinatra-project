@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <h1>Add these games!</h1>
 <form action="/games/add" method="post">
   <% BoardGame.all.each do |game| %>

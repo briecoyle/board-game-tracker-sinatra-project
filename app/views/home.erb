@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <h1>Board Game Tracker</h1>
 <div class="click_me">
   <a id="login" href="/login">Log In</a>

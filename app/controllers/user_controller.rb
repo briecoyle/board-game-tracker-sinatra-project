@@ -1,5 +1,7 @@
-class UserController < ApplicationController
+require 'rack-flash'
 
+class UserController < ApplicationController
+  use Rack::Flash
   get '/' do
     erb :home
   end
@@ -14,6 +16,7 @@ class UserController < ApplicationController
 
   get '/signup' do
     if logged_in?
+      flash[:message] = "Silly goose! You're already logged in!"
       redirect to '/games/index'
     else
       erb :'/users/signup'
@@ -35,6 +38,7 @@ class UserController < ApplicationController
       session[:id] = @user.id
       redirect to '/games/index'
     else
+      flash[:message] = "Please enter a valid username and password."
       redirect to '/login'
     end
   end
