@@ -7,20 +7,11 @@ class UserController < ApplicationController
   end
 
   get '/login' do
-    if logged_in?
-      erb :'/games/index'
-    else
-      erb :'/users/login'
-    end
+    erb :'/users/login'
   end
 
   get '/signup' do
-    if logged_in?
-      flash[:message] = "Silly goose! You're already logged in!"
-      redirect to '/games/index'
-    else
-      erb :'/users/signup'
-    end
+    erb :'/users/signup'
   end
 
   post '/logout' do
