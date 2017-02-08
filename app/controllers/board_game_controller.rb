@@ -3,7 +3,7 @@ require 'rack-flash'
 class BoardGameController < ApplicationController
   use Rack::Flash
 
-  get '/games/index' do
+  get '/games' do
     if logged_in?
       @user = current_user
       erb :'/games/index'
@@ -46,14 +46,14 @@ class BoardGameController < ApplicationController
     end
     @game.save
     @game.users << current_user
-    redirect to '/games/index'
+    redirect to '/games'
   end
 
   post '/games/add' do
     @user = current_user
     @user.board_game_ids += params[:games]
     flash[:message] = "Games have been added."
-    redirect to '/games/index'
+    redirect to '/games'
   end
 
   post '/games/:slug' do
@@ -62,11 +62,11 @@ class BoardGameController < ApplicationController
       @user = current_user
       if @user.board_games.include?(@game)
         flash[:message] = "Silly goose! You already have that game."
-        redirect to "/games/index"
+        redirect to "/games"
       else
         @user.board_games << @game
         flash[:message] = "That game has been added."
-        redirect to '/games/index'
+        redirect to '/games'
       end
     else
       flash[:message] = "You can only add games if you are logged in."
