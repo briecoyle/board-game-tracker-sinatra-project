@@ -3,5 +3,7 @@ class User < ActiveRecord::Base
   has_many :board_games, through: :users_board_games
 
   has_secure_password
-  validates_uniqueness_of :username
+  validates :username, uniqueness: true
+  validates :username, presence: true
+  validates :password, presence: true
 end
