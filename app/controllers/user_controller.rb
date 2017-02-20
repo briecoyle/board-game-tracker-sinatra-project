@@ -27,7 +27,7 @@ class UserController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:id] = @user.id
-      redirect to '/games/index'
+      redirect to '/games'
     else
       flash[:message] = "Please enter a valid username and password."
       redirect to '/login'
