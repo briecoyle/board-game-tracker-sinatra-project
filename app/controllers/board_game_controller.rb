@@ -4,29 +4,18 @@ class BoardGameController < ApplicationController
   use Rack::Flash
 
   get '/games' do
-    if logged_in?
-      @user = current_user
-      erb :'/games/index'
-    else
-      redirect to 'login'
-    end
+    redirect_for_logged_out
+    erb :'/games/index'
   end
 
   get '/games/new' do
-    if logged_in?
-      erb :'/games/new'
-    else
-      flash[:message] = "You are not logged in."
-      redirect to '/login'
-    end
+    redirect_for_logged_out
+    erb :'/games/new'
   end
 
   get '/games/add' do
-    if logged_in?
-      erb :'/games/add'
-    else
-      redirect to '/login'
-    end
+    redirect_for_logged_out
+    erb :'/games/add'
   end
 
   get '/games/:slug' do
@@ -36,6 +25,7 @@ class BoardGameController < ApplicationController
   end
 
   post '/games/new' do
+    redirect_for_logged_out
     @game = BoardGame.new
     @game.name = params[:name]
     @game.description = params[:description]
@@ -58,19 +48,15 @@ class BoardGameController < ApplicationController
 
   post '/games/:slug' do
     @game = BoardGame.find_by_slug(params[:slug])
-    if logged_in?
-      @user = current_user
-      if @user.board_games.include?(@game)
-        flash[:message] = "Silly goose! You already have that game."
-        redirect to "/games"
-      else
-        @user.board_games << @game
-        flash[:message] = "That game has been added."
-        redirect to '/games'
-      end
+    redirect_for_logged_out
+    @user = current_user
+    if @user.board_games.include?(@game)
+      flash[:message] = "Silly goose! You already have that game."
+      redirect to "/games"
     else
-      flash[:message] = "You can only add games if you are logged in."
-      redirect to "games/#{@game.slug}"
+      @user.board_games << @game
+      flash[:message] = "That game has been added."
+      redirect to '/games'
     end
   end
 end
