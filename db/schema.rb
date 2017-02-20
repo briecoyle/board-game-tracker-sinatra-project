@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170203191648) do
+ActiveRecord::Schema.define(version: 20170220191059) do
 
   create_table "board_games", force: :cascade do |t|
     t.string  "name"
@@ -19,14 +19,14 @@ ActiveRecord::Schema.define(version: 20170203191648) do
     t.integer "max_players"
   end
 
+  create_table "board_games_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "board_game_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
-  end
-
-  create_table "users_board_games", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "board_game_id"
   end
 
 end

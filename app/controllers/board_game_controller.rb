@@ -26,17 +26,14 @@ class BoardGameController < ApplicationController
 
   post '/games/new' do
     redirect_for_logged_out
-    @game = BoardGame.new
-    @game.name = params[:name]
-    @game.description = params[:description]
-    @game.min_players = params[:min_players]
-    @game.max_players = params[:max_players]
-    if params[:party] == "on"
-      @max.max_players = 11
+    @board_game = current_user.board_games.build(params)
+    if @board_game.save
+      current_user.board_games << @board_game
+      redirect to '/games'
+    else
+      flash[:message] = "Your game idea was horrible!" # @board_game.errors.full_messages
+      redirect to '/games/new'
     end
-    @game.save
-    @game.users << current_user
-    redirect to '/games'
   end
 
   post '/games/add' do
