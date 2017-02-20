@@ -7,10 +7,12 @@ class UserController < ApplicationController
   end
 
   get '/login' do
+    redirect_for_logged_in
     erb :'/users/login'
   end
 
   get '/signup' do
+    redirect_for_logged_in
     erb :'/users/signup'
   end
 
@@ -24,6 +26,7 @@ class UserController < ApplicationController
   end
 
   post '/login' do
+    redirect_for_logged_in
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:id] = @user.id
@@ -35,8 +38,9 @@ class UserController < ApplicationController
   end
 
   post '/signup' do
-    @user = User.create(params)
-    if @user.valid?
+    redirect_for_logged_in
+    @user = User.new(params)
+    if @user.save
       session[:id] = @user.id
       redirect to '/games'
     else
